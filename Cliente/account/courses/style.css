@@ -107,9 +107,8 @@ body {
 
 #center {
     width: 80%;
-    height: 30%;
-    margin: -20px auto;
-    overflow-y: scroll;
+    height: 38%;
+    margin: -40px auto;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px, rgba(0, 0, 0, 0.05) 0px 4px 12px;
     padding: 20px 20px;
 }
@@ -125,9 +124,34 @@ fieldset {
 #center li{
     font-size: 18px;
     list-style: none;
-    margin-top: 10px;
     text-align: center;
+    border-bottom: 1px solid black;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
+#center img {
+    width: 300px;
+    height: 250px;
+    margin: 20px;
+}
+
+#center a{
+    text-decoration: none;
+    color: black;
+}
+
+#history div {
+    text-align: left;
+}
+
+#history div h1 {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+#history div h3 {
+    margin: 0;
+}
 
 
