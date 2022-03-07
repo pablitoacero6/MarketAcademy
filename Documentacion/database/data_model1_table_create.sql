@@ -8,7 +8,7 @@ CREATE TABLE public.professor (
 );
 
 
-CREATE TABLE public.stundent (
+CREATE TABLE public.student (
     id numeric NOT NULL,
     name varchar NOT NULL,
     mail varchar NOT NULL,
@@ -68,8 +68,24 @@ CREATE TABLE public.level (
 );
 
 
-ALTER TABLE public.register ADD CONSTRAINT FK_register__id_student FOREIGN KEY (id_student) REFERENCES public.stundent(id);
+CREATE TABLE public.tag (
+    id SERIAL NOT NULL,
+    tag varchar NOT NULL,
+    PRIMARY KEY (id)
+);
+
+
+CREATE TABLE public.tagged (
+    id_course integer NOT NULL,
+    id_tag integer NOT NULL,
+    PRIMARY KEY (id_course, id_tag)
+);
+
+
+ALTER TABLE public.register ADD CONSTRAINT FK_register__id_student FOREIGN KEY (id_student) REFERENCES public.student(id);
 ALTER TABLE public.register ADD CONSTRAINT FK_register__id_course FOREIGN KEY (id_course) REFERENCES public.course(id);
 ALTER TABLE public.course ADD CONSTRAINT FK_course__id_level FOREIGN KEY (id_level) REFERENCES public.level(id);
 ALTER TABLE public.course ADD CONSTRAINT FK_course__id_professor FOREIGN KEY (id_professor) REFERENCES public.professor(id);
 ALTER TABLE public.course ADD CONSTRAINT FK_course__id_category FOREIGN KEY (id_category) REFERENCES public.category(id);
+ALTER TABLE public.tagged ADD CONSTRAINT FK_tagged__id_course FOREIGN KEY (id_course) REFERENCES public.course(id);
+ALTER TABLE public.tagged ADD CONSTRAINT FK_tagged__id_tag FOREIGN KEY (id_tag) REFERENCES public.tag(id);
