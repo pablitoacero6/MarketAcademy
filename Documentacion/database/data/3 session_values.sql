@@ -1,0 +1,10 @@
+insert into session values(1, 'Lunes', 14, 2);
+insert into session values(1, 'Miercoles', 14, 2);
+insert into session values(2, 'Martes', 8, 2);
+insert into session values(2, 'Jueves', 8, 2);
+insert into session values(3, 'Viernes', 18, 2);
+insert into session values(3, 'Sabado', 18, 2);
+insert into session values(4, 'Sabado', 8, 2);
+insert into session values(4, 'Sabado', 14, 2);
+insert into session values(5, 'Jueves', 12, 2);
+insert into session values(5, 'Viernes', 12, 2);
