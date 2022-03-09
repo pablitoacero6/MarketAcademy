@@ -1,0 +1,10 @@
+insert into Professor values (1054096257, 'Gerardo Hernandez', 'gerardo.hernadez@gmail.com','gerardohernandez', 7622331, 4.3);
+insert into Professor values (1052485726, 'Daniel Hernandez', 'daniel.hernandez@gmail.com','danielhernandez', 7277318, 4.2);
+insert into Professor values (1053345685, 'Angela Angarita', 'angela.angarita@gmail.com','angelaangarita', 7349823, 2.2);
+insert into Professor values (1054984661, 'Felipe Contreras', 'felipe.contreras@gmail.com','felipecontreras', 7900312, 1.0);
+insert into Professor values (1052343453, 'Camila Ceballos', 'camila.ceballos@gmail.com','camilaceballos', 7614798, 3.5);
+insert into Professor values (1053009823, 'Juan Acero', 'juan.acero@gmail.com','juanacero', 7112334, 1.0);
+insert into Professor values (1052311234, 'Edwin Acosta', 'edwin.acosta@gmail.com','edwinacosta', 7831123, 2.3);
+insert into Professor values (1053917290, 'Leonardo Sanguino', 'leonardo.sanguino@gmail.com','leonardosanguino', 7713994, 2.0);
+insert into Professor values (1052000012, 'Camilo Sanchez', 'camilo.sanchez@gmail.com','camilosanchez', 7676711, 5.0);
+insert into Professor values (1054991233, 'Jose Gonzales', 'jose.gonzales@gmail.com','josegonzales', 7655511, 4.5);
