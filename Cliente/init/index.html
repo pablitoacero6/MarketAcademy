@@ -22,7 +22,8 @@
                 <img src="../img/user.png" alt="" id="userIcon">
             </button>
             <div class="links">
-                <a href="#" id="register">Registrate</a>
+                <a href="#" id="registerStudent">Registro estudiante</a>
+                <a href="#" id="registerTeacher">Registro profesor</a>
                 <a href="#">Iniciar sesion</a>
             </div>
         </div>
@@ -118,18 +119,40 @@
     <div class="overlay" id="overlay1">
         <div class="popup" id="popup1">
             <a href="#" class="cerrarPopup" id="cerrarPopup1" ><img src="../img/close.png" alt=""></a>
-            <h2>Crear cliente</h2>
+            <h2>Registro estudiante</h2>
             <div class="boxCreate">
                 <input type="text" placeholder="Nombres..." id="nombres">
                 <input type="text" placeholder="Apellidos..." id="apellidos">
                 <p>Fecha de nacimiento:</p>
                 <input type="text" placeholder="dd/mm/yyyy" id="fecha">
                 <input type="text" placeholder="No. de documento CC..." id="No documento">
-                <input type="text" placeholder="Direccion..." id="direccion">
+                <input type="text" placeholder="Contraseña..." id="direccion">
                 <input type="button" class="btn" id="saveCreateClient" value="Guardar">
             </div>
         </div>
     </div>
+    <div class="overlay" id="overlay2">
+        <div class="popup" id="popup2">
+            <a href="#" class="cerrarPopup" id="cerrarPopup2"><img src="../img/close.png" alt=""></a>
+            <h2>Registro profesor</h2>
+            <div class="boxCreateTwo">
+                <p>Seleccionar: </p>
+                <Select id="ClientList">
+                </Select>
+                <p>Nombres: </p>
+                <input type="text" placeholder="Nombres...">
+                <p>Apellidos: </p>
+                <input type="text" placeholder="Apellidos...">
+                <p>Fecha de nacimiento:</p>
+                <input type="text" placeholder="dd/mm/yyyy">
+                <p>No. de documento: </p>
+                <input type="text" placeholder="No. de documento CC...">
+                <p>Direccion: </p>
+                <input type="text" placeholder="Direccion...">
+            </div>
+            <input type="button" class="btn" value="Guardar">
+        </div>
+    </div> 
 </body>
 <script src="script.js"></script>
 <footer id="lower">
