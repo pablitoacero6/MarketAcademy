@@ -1,15 +1,16 @@
 CREATE TABLE public.professor (
-    id numeric NOT NULL,
+    id integer NOT NULL,
     name varchar NOT NULL,
     mail varchar NOT NULL,
     password varchar NOT NULL,
     account_number integer NOT NULL,
+    calification double precision,
     PRIMARY KEY (id)
 );
 
 
 CREATE TABLE public.student (
-    id numeric NOT NULL,
+    id integer NOT NULL,
     name varchar NOT NULL,
     mail varchar NOT NULL,
     password varchar NOT NULL,
@@ -18,7 +19,7 @@ CREATE TABLE public.student (
 
 
 CREATE TABLE public.register (
-    id_student numeric NOT NULL,
+    id_student integer NOT NULL,
     id_course integer NOT NULL,
     status varchar NOT NULL,
     PRIMARY KEY (id_student, id_course)
@@ -32,9 +33,10 @@ CREATE TABLE public.course (
     id_level integer NOT NULL,
     id_professor integer NOT NULL,
     id_category integer NOT NULL,
-    content varchar NOT NULL,
-    horary varchar NOT NULL,
-    status char NOT NULL,
+    content varchar,
+    status char,
+    calification double precision,
+    duration numeric,
     PRIMARY KEY (id)
 );
 
@@ -56,7 +58,9 @@ CREATE TABLE public.category (
 CREATE TABLE public.historical (
     id_student numeric NOT NULL,
     id_course integer NOT NULL,
-    date date NOT NULL,
+    date_init date NOT NULL,
+    date_end date NOT NULL,
+    calification double precision,
     PRIMARY KEY (id_student, id_course)
 );
 
@@ -82,6 +86,15 @@ CREATE TABLE public.tagged (
 );
 
 
+CREATE TABLE public.session (
+    id_course integer NOT NULL,
+    day varchar NOT NULL,
+    hour numeric NOT NULL,
+    duration numeric NOT NULL,
+    PRIMARY KEY (id_course, day, hour)
+);
+
+
 ALTER TABLE public.register ADD CONSTRAINT FK_register__id_student FOREIGN KEY (id_student) REFERENCES public.student(id);
 ALTER TABLE public.register ADD CONSTRAINT FK_register__id_course FOREIGN KEY (id_course) REFERENCES public.course(id);
 ALTER TABLE public.course ADD CONSTRAINT FK_course__id_level FOREIGN KEY (id_level) REFERENCES public.level(id);
@@ -89,3 +102,4 @@ ALTER TABLE public.course ADD CONSTRAINT FK_course__id_professor FOREIGN KEY (id
 ALTER TABLE public.course ADD CONSTRAINT FK_course__id_category FOREIGN KEY (id_category) REFERENCES public.category(id);
 ALTER TABLE public.tagged ADD CONSTRAINT FK_tagged__id_course FOREIGN KEY (id_course) REFERENCES public.course(id);
 ALTER TABLE public.tagged ADD CONSTRAINT FK_tagged__id_tag FOREIGN KEY (id_tag) REFERENCES public.tag(id);
+ALTER TABLE public.session ADD CONSTRAINT FK_session__id_course FOREIGN KEY (id_course) REFERENCES public.course(id);

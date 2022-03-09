@@ -1,1 +1,1 @@
-DROP DATABASE untitled;
+DROP DATABASE market_academia_db;
