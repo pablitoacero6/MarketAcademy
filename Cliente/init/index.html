@@ -21,9 +21,9 @@
                 <img src="../img/menu.png" alt="" id="menuIcon">
                 <img src="../img/user.png" alt="" id="userIcon">
             </button>
-            <div class="links">
+            <div class="links" id="links">
                 <a href="#" id="registerStudent">Registrarse</a>
-                <a href="#">Iniciar sesion</a>
+                <a href="../login/index.html">Iniciar sesion</a>
             </div>
         </div>
     </header>
@@ -121,7 +121,7 @@
             <h2>Registrarse</h2>
             <div class="boxCreate">
                 <section id="select">
-                    <h4>registrar como: </h4>
+                    <h2 id="registerTitle">registrar como: </h2>
                     <select id="selectOption">
                         <option>Estudiante</option>
                         <option>Profesor</option>
@@ -129,8 +129,6 @@
                 </section>
                 <input type="text" placeholder="Nombres..." id="nombres">
                 <input type="text" placeholder="Apellidos..." id="apellidos">
-                <p>Fecha de nacimiento:</p>
-                <input type="text" placeholder="dd/mm/yyyy" id="fecha">
                 <input type="text" placeholder="No. de documento CC..." id="No documento">
                 <input type="text" placeholder="Contraseña..." id="direccion">
                 <input type="button" class="btn" id="saveCreateClient" value="Guardar">
