@@ -103,7 +103,7 @@ body {
 .links {
     position: absolute;
     background-color: white;
-    margin-top: 5px;
+    margin-top: 2px;
     margin-left: 70%;
     display: none;
     width: 240px;
@@ -116,6 +116,10 @@ body {
 }
 
 .desplegable:hover .links{
+    display: block;
+}
+
+.links:hover {
     display: block;
 }
 
@@ -251,11 +255,13 @@ body {
     margin: 0 auto;
 }
 
-#select select {
+#selectOption {
     background-color: white;
     border: none;
     width: 80%;
     height: 80%;
+    font-size: 14px;
+    opacity: 0;
 }
 
 .cerrarPopup {
@@ -269,6 +275,11 @@ body {
     margin-bottom: 30px;
     margin: 30px;
     opacity: 0;
+}
+
+#registerTitle {
+    font-size: 16px;
+    font-weight: 200;
 }
 
 .boxCreate input{

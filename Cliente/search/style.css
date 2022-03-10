@@ -93,6 +93,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px, rgba(0, 0, 0, 0.05) 0px 4px 12px;
 }
 
+
 .links a{
     text-decoration: none;
     color: black;
@@ -119,23 +120,84 @@ body {
     display: block;
 }
 
+/* CONTAINER */
+
 #container {
     width: 100%;
-    height: 80%;
-    display: block;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
-/*CENTER*/
+/* MENU */
+
+#menu {
+    width: 40%;
+    height: 80%;
+}
+
+#menu ul {
+    margin-top: 100px;
+}
+
+#menu li {
+    list-style: none;
+    display: block;
+    width: 80%;
+    height: 50px;
+    margin-top: 20px;
+    padding: 0 10px;
+    text-align: center;
+}
+
+#menu p{
+    float: left;
+}
+
+#menu img{
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin: 10px;
+}
+
+#menu a{
+    text-decoration: none;
+    color: black;
+}
+
+/* CENTER */
 
 #center {
-    position: inherit;
-    width: 90%;
-    height: 90%;
-    margin: 40px auto;
+    width: 150%;
+    height: 80%;
+    margin-left: -60%;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px, rgba(0, 0, 0, 0.05) 0px 4px 12px;
+    padding: 20px 20px;
+    overflow-y: scroll;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+}
+
+#center ul {
+    padding: 0;
+}
+
+#center li{
+    font-size: 18px;
+    list-style: none;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#center img {
+    width: 348px;
+    height: 195px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 3px;
+    margin-right: 20px;
 }
 
 #center a{
@@ -143,59 +205,66 @@ body {
     color: black;
 }
 
-#center div {
-    margin: 20px 10px;
+/* SEARCH */
+
+#history {
+    width: 140%;
 }
 
-#center img{
-    width: 100%;
-    height: 80%;
-    border-radius: 10px;
+#history h1, h3, p {
+    text-align: left;
+    
 }
 
-#center h3 {
-    font-size: 18px;
-    margin: 0;
+#history h1{
+    margin-bottom: 0px;
+    font-weight: 400;
 }
 
-#center p{
-    font-size: 14px;
-    margin: 0;
-    color: grey;
+#history h3 {
+    margin-top: 0px;
+    font-weight: 200;
 }
 
-/*LOWER*/
+/* TEACHERS */
 
-#lower {
-    background-color: gainsboro;
-    width: 100%;
-    height: 10%;
+#teachers {
+    width: 22%;
+    left:75%;
+    position: absolute;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px, rgba(0, 0, 0, 0.05) 0px 4px 12px;
+    padding-bottom: 20px;
+}
+
+#teachers h1 {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+}
+
+#teachersCards {
+    width: 70%;
+    height: 45px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 10px;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px, rgba(0, 0, 0, 0.05) 0px 4px 12px;
 }
 
-#lower nav {
-    margin-top: 30px;
+#teachersCards img{
+    width: 42px;
+    height: 42px;
+    margin: 1% 0;
+    margin-left: 10px;
     float: left;
-    font-size: 14px;
 }
 
-#lower ul,li {
-    float: left;
-    padding-left: 10px;
-    margin: 0 auto;
-}
-
-#lower img{
-    width: 20px;
-    height: 20px;
-}
-#one {
-    list-style: circle;
-    width: 80%;
-}
-
-#two {
-    list-style: none;
-    width: 20%;
+#teachersCards h3{
+    margin: 5% 0;
+    margin-right: 10%;
+    text-align: left;
     float: right;
+    font-weight: 300;
+
 }
