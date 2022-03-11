@@ -61,3 +61,32 @@ input {
 }
 input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
 
+.choose {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	font-size: 13px;
+	align-items: center;
+}
+
+.choose p {
+	color: white;
+	width: 30%;
+}
+
+.choose select{
+	width: 140%;
+	height: 28px;
+	margin: -50%;
+	border: none;
+	color: white;
+	background-color: rgba(100,100,100,0.2);
+}
+
+.link {
+	width: 100%;
+	text-decoration: none;
+	text-align: center;
+}

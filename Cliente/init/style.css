@@ -103,7 +103,7 @@ body {
 .links {
     position: absolute;
     background-color: white;
-    margin-top: 5px;
+    margin-top: 2px;
     margin-left: 70%;
     display: none;
     width: 240px;
@@ -116,6 +116,10 @@ body {
 }
 
 .desplegable:hover .links{
+    display: block;
+}
+
+.links:hover {
     display: block;
 }
 
@@ -198,4 +202,282 @@ body {
     list-style: none;
     width: 20%;
     float: right;
+}
+
+/* POPUP */
+
+
+.overlay {
+    background-color: rgba(0,0,0,.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    visibility: hidden;
+}
+
+.overlay.active {
+    visibility: visible;
+}
+
+.overlay img{
+    width: 20px;
+    height: 20px;
+}
+
+.popup {
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+	font-family: 'Open Sans', sans-serif;
+    padding: 20px;
+    text-align: center;
+    width: 40%;
+    height: 70%;
+    overflow-y: scroll;
+    transition: .3s ease all;
+    transform: scale(0.7);
+    opacity: 0;
+    border-radius: 10px;
+}
+
+#select {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: none;
+    width: 80%;
+    height: 80%;
+    font-size: 14px;
+    margin: 0 auto;
+}
+
+#selectOption {
+    background-color: white;
+    border: none;
+    width: 80%;
+    height: 80%;
+    font-size: 14px;
+    opacity: 0;
+}
+
+.cerrarPopup {
+    display: block;
+    text-align: right;
+}
+
+.popup h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    margin: 30px;
+    opacity: 0;
+}
+
+#registerTitle {
+    font-size: 16px;
+    font-weight: 200;
+}
+
+.boxCreate input{
+    width: 80%;
+    margin-bottom: 20px;
+    height: 52px;
+    font-size: 16px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    border: none;
+    opacity: 0;
+}
+
+.boxCreate .btn{
+    padding: 0 20px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: .3s ease all;
+}
+
+.boxCreate .btn:hover {
+    background-color: black;
+    color: white;
+}
+
+.boxCreate p {
+    text-align: left;
+    padding-left: 50px;
+    opacity: 0;
+}
+
+/* PROFESORES */
+
+
+.boxCreateTwo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.boxCreateTwo select {
+    width: 80%;
+    height: 52px;
+    margin-bottom: 20px;
+    opacity: 0;
+}
+
+
+.boxCreateTwo input{
+    width: 80%;
+    margin-bottom: 20px;
+    height: 52px;
+    font-size: 16px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    border: none;
+    opacity: 0;
+}
+
+ .btn{
+    width: 80%;
+    margin-bottom: 20px;
+    height: 52px;
+    font-size: 16px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    border: none;
+    padding: 0 20px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: .3s ease all;
+}
+
+.btn:hover {
+    background-color: black;
+    color: white;
+}
+
+.boxCreateTwo p {
+    text-align: left;
+    padding-left: 50px;
+    opacity: 0;
+}
+
+/* CLIENTS */
+
+.boxCreateThree {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.boxCreateThree select {
+    width: 80%;
+    height: 52px;
+    margin-bottom: 20px;
+    opacity: 0;
+}
+
+.boxCreateThree p {
+    text-align: left;
+    padding-left: 50px;
+    opacity: 0;
+}
+
+.overlay table {
+    width: 100%;
+    margin-top: 40px;
+    opacity: 0;
+}
+
+.overlay table th {
+    background-color: black;
+    color: white;
+    font-weight: 100;
+}
+
+.overlay table tr {
+    height: 52px;
+}
+
+/* POPUP ACTIVATE*/
+
+.popup.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.popup.active table {
+    animation: entradaTabla .8s ease 1s forwards;
+}
+
+.popup.active p {
+    animation: entradaTextos .8s ease 1s forwards;
+}
+
+.popup.active select {
+    animation: entradaSelect .8s ease 1s forwards;
+}
+
+.popup.active input{
+    animation: entradaInputs .8s ease 1s forwards;
+}
+
+.popup.active h2{
+    animation: entradaTitulo .8s ease 0.4s forwards;
+}
+
+/* ANIMATION */
+
+@keyframes entradaTitulo {
+    from {
+        transform: translateY(-25px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes entradaInputs {
+    from {
+        transform: translateX(-25px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes entradaTextos {
+    from {
+        transform: translateX(-25px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes entradaSelect {
+    from {
+        transform: translateX(-25px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes entradaTabla {
+    from {
+        transform: translateX(-25px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
