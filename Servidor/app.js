@@ -1,10 +1,15 @@
 const express = require('express')
-const port = 3000
+const port = 3001
 const app = express()
 const Pool = require('pg').Pool
+const fastcsv = require("fast-csv");
+const fs = require("fs");
+const ws = fs.createWriteStream("public/data.csv");
+const axios = require('axios')
 var cors = require('cors')
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
+
 
 app.use(cors())
 
@@ -16,8 +21,24 @@ const pool = new Pool({
   port: 5432,
 })
 
-app.get('/', (req, res) => {
-  res.json({ name: 'David', age: '22' })
+app.get('/sendcsv', (req, res) => {
+  pool.query('SELECT * FROM student', (error, results) => {
+    if (error) throw error
+    saveCsv(results.rows)
+    var formData = new FormData();
+    formData.append("public/data.csv", fileInputElement.files[0])
+    axios.post('http://localhost:3000/alg', {
+      idStudent: '000000',
+      nameStudent: 'David',
+      doc: formData
+    }).then(function (response) {
+        console.log(response.data)
+        res.send(response.data)
+      }).catch(function (error) {
+        console.log(error);
+        res.send(error)
+      })
+  })
 })
 
 app.get('/students', (req, res) => {
@@ -93,6 +114,21 @@ function userValidation(type, username, password, res) {
     })
   }
 }
+
+function saveCsv(data) {
+  const jsonData = JSON.parse(JSON.stringify(results.rows));
+  console.log("jsonData", jsonData);
+  fastcsv
+    .write(jsonData, { headers: false })
+    .on("finish", function () {
+      console.log("Write to data.csv successfully!");
+    })
+    .pipe(ws);
+}
+
+app.get('/axios', (req, res) => {
+  res.send('Hola axios');
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
