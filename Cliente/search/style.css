@@ -192,12 +192,13 @@ body {
 }
 
 #center img {
-    width: 348px;
+    width: 306px;
     height: 195px;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 3px;
     margin-right: 20px;
+    border-radius: 10px;
 }
 
 #center a{
@@ -218,12 +219,12 @@ body {
 
 #history h1{
     margin-bottom: 0px;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 #history h3 {
     margin-top: 0px;
-    font-weight: 200;
+    font-weight: 400;
 }
 
 /* TEACHERS */
@@ -249,6 +250,7 @@ body {
     text-align: center;
     margin-bottom: 10px;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px, rgba(0, 0, 0, 0.05) 0px 4px 12px;
+    border-radius: 10px;
 }
 
 #teachersCards img{
@@ -356,6 +358,7 @@ body {
 .boxCreate img {
     width: 280px;
     height: 195px;
+    border-radius: 10px;
 }
 
 .boxCreate h1{
@@ -369,8 +372,12 @@ body {
 }
 
 .boxCreate button{
-    width: 80%;
-    padding: 0 20px;
+    width: 77px;
+    height: 42px;
+    border-radius: 21px;
+    background-color: white;
+    border: 1px solid grey;
+    padding: 0 0;
     border: none;
     font-size: 18px;
     cursor: pointer;
@@ -400,6 +407,7 @@ body {
 .boxCreateRe img {
     width: 280px;
     height: 195px;
+    border-radius: 10px;
 }
 
 .boxCreateRe h1{
@@ -413,8 +421,12 @@ body {
 }
 
 .boxCreateRe button{
-    width: 80%;
-    padding: 0 20px;
+    width: 77px;
+    height: 42px;
+    border-radius: 21px;
+    background-color: white;
+    border: 1px solid grey;
+    padding: 0 0;
     border: none;
     font-size: 18px;
     cursor: pointer;

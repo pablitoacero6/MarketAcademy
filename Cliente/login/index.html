@@ -15,16 +15,17 @@
             <input type="password" placeholder="Contraseña" required="required" id="password"/>
             <section class="choose">
                 <p>Perfil: </p>
-                <select>
+                <select id="tipoUsuarioLista">
+                    <option></option>
                     <option>Estudiante</option>
                     <option>Profesor</option>
+                    <option>Administrador</option>
                 </select>
             </section>
-            <a href="../initLogin/index.html"> <p  class="link">ingresar sin credencial</p></a>
             <button type="submit" class="btn btn-primary btn-block btn-large" id="initSession">Ingresar</button>
         </form>
     </div>
 
-    <script src="../client.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
