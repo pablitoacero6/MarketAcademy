@@ -4,27 +4,6 @@ var var_cod_login = 0
 
 
 
-/* HACER LOGIN 
-
-function login(){
-    if(tipoUsuarioLogin == 'Estudiante'){
-        let targetURL = '../initLogin/index.html';
-        let newURL = document.createElement('a');
-        newURL.href = targetURL;
-        document.body.appendChild(newURL);
-        newURL.click();
-    }else if(tipoUsuarioLogin == 'Profesor'){
-        location.href("../initLogin/index.html")
-    }else if(tipoUsuarioLogin == 'Administrador'){
-        location.href('../initLogin/index.html')
-    }
-}
-
-loginButton.addEventListener('click', (evt) => {
-    evt.preventDefault()
-    login()
-})
-
 /* OBTENER TIPO USUARIO */
 
 function obtenerTipoUsuario() {
@@ -32,13 +11,40 @@ function obtenerTipoUsuario() {
     tipoUsuarioLogin = document.getElementById('tipoUsuarioLista').options[indice].text;
   };
 
+function loginSinVerificacion(){
+    if(tipoUsuarioLogin == 'Estudiante'){
+        let targetURL = '../student/initLogin/index.html';
+        let newURL = document.createElement('a');
+        newURL.href = targetURL;
+        document.body.appendChild(newURL);
+        newURL.click();
+    }else if(tipoUsuarioLogin == 'Profesor'){
+        let targetURL = '../teacher/initTeacher/index.html';
+        let newURL = document.createElement('a');
+        newURL.href = targetURL;
+        document.body.appendChild(newURL);
+        newURL.click();
+    }else if(tipoUsuarioLogin == 'Administrador'){
+        let targetURL = '../initLogin/index.html';
+        let newURL = document.createElement('a');
+        newURL.href = targetURL;
+        document.body.appendChild(newURL);
+        newURL.click();
+    }
+}
+
 document.getElementById('tipoUsuarioLista').addEventListener("change",
 (evt) => {
     evt.preventDefault();
     obtenerTipoUsuario();
 })
 
-/* CAMBIAR TIPO A COD DE USUARIO */
+document.getElementById('initSession').addEventListener("click", (evt) => {
+    evt.preventDefault()
+    loginSinVerificacion();
+})
+
+/* CAMBIAR TIPO A COD DE USUARIO 
 
 function cambiarCod(){
     if(tipoUsuarioLogin == 'Estudiante'){
@@ -51,7 +57,29 @@ function cambiarCod(){
 }
 
 
-/* LOGIN VERFICADO */
+/* LOGIN VERFICADO 
+
+function cambiarInterfaz(code){
+    if(code == 201){
+        let targetURL = '../initLogin/index.html';
+        let newURL = document.createElement('a');
+        newURL.href = targetURL;
+        document.body.appendChild(newURL);
+        newURL.click();
+    }else if(code == 202){
+        let targetURL = '../teacher/initTeacher/index.html';
+        let newURL = document.createElement('a');
+        newURL.href = targetURL;
+        document.body.appendChild(newURL);
+        newURL.click();
+    }else if(code == 203){
+        let targetURL = '../initLogin/index.html';
+        let newURL = document.createElement('a');
+        newURL.href = targetURL;
+        document.body.appendChild(newURL);
+        newURL.click();
+    }
+}
 
 function login(){
     fetch(url + "/login", {
@@ -68,7 +96,7 @@ function login(){
     }).then(res => res.json())
     .catch(error => console.error('Error: ', error))
     .then(response => {
-        return console.log('Success: ', response);
+        return cambiarInterfaz(response)
     })
 }
 
@@ -78,3 +106,4 @@ document.getElementById("initSession").addEventListener("click",
     cambiarCod()
     login();
 })
+*/

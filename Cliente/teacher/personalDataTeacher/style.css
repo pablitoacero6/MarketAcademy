@@ -136,45 +136,34 @@ body {
 
 /* CENTER */
 
+
 #center {
     width: 150%;
     height: 80%;
     margin-left: -60%;
+    overflow-y: scroll;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px, rgba(0, 0, 0, 0.05) 0px 4px 12px;
     padding: 20px 20px;
-    overflow-y: scroll;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-#center ul {
-    padding: 0;
-}
-
-#center li{
-    font-size: 18px;
-    list-style: none;
-    text-align: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
 }
 
 #center img {
-    width: 306px;
-    height: 195px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 3px;
-    margin-right: 20px;
-    border-radius: 10px;
+    width: 300px;
+    height: 300px;
+    display: block;
+    margin: 20px auto;
 }
 
-#center a{
-    text-decoration: none;
-    color: black;
+#center fieldset {
+    width: 80%;
+    margin: 0 auto;
 }
 
-
+#datosPersonales li{
+    list-style: none;
+    display: block;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 
 /* SEARCH */
 
