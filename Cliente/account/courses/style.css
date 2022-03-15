@@ -135,6 +135,7 @@ fieldset {
     width: 348px;
     height: 195px;
     margin: 20px;
+    border-radius: 10px;
 }
 
 #center a{
