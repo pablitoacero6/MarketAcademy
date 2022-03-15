@@ -16,10 +16,9 @@ var view = document.getElementsByClassName("view"),
             const elementTwo = views[index]
             try { 
                 if(elementTwo.hasAttribute('src') == true){
-                    imgPop.setAttribute('src',elementFour.getAttribute('src'))
+                    imgPop.setAttribute('src',elementTwo.getAttribute('src'))
                 }
-            } catch (error) {
-                
+            } catch (error) {  
             }
         }
     }
