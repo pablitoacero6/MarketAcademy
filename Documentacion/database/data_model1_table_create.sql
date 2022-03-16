@@ -28,15 +28,16 @@ CREATE TABLE public.register (
 
 CREATE TABLE public.course (
     id SERIAL NOT NULL,
-    name varchar NOT NULL,
+    title varchar NOT NULL,
     price numeric NOT NULL,
     id_level integer NOT NULL,
     id_professor integer NOT NULL,
     id_category integer NOT NULL,
-    content varchar,
     status char,
     calification double precision,
-    duration numeric,
+    img varchar,
+    duration numeric NOT NULL,
+    description varchar NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -60,7 +61,7 @@ CREATE TABLE public.historical (
     id_course integer NOT NULL,
     date_init date NOT NULL,
     date_end date NOT NULL,
-    calification double precision,
+    calification double precision NOT NULL,
     PRIMARY KEY (id_student, id_course)
 );
 
