@@ -158,10 +158,35 @@ body {
     margin: 0 auto;
 }
 
+#editPhoto, #save {
+    border: none;
+    width: 10%;
+    height: 42px;
+    margin: 0 45%;
+    border-radius: 21px;
+    background-color: white;
+    border: 1px solid grey;
+    padding: 0 0;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: .3s ease all;
+}
+
+#editPhoto:hover, #save:hover {
+    background-color: black;
+    color: white;
+}
+
 #datosPersonales li{
     list-style: none;
     display: block;
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+#datosPersonales input {
+    width: 80%;
+    height: 60%;
 }
 
