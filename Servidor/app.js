@@ -1,5 +1,5 @@
 const express = require('express')
-const port = 3001
+const port = 3000
 const app = express()
 const Pool = require('pg').Pool
 const fastcsv = require("fast-csv");
@@ -12,6 +12,7 @@ var jsonParser = bodyParser.json()
 
 
 app.use(cors())
+app.use(express.json()); 
 
 const pool = new Pool({
   user: 'postgres',
@@ -87,9 +88,10 @@ app.get('/tagged', (req, res) => {
 })
 
 app.post('/login', jsonParser, (req, res) => {
-  const type = req.body[0]["type"]
-  const username = req.body[0]["username"]
-  const password = req.body[0]["password"]
+  console.log(req.body)
+  const type = req.body["CODIGO_LOGIN"]
+  const username = req.body["USUARIO_LOGIN"]
+  const password = req.body["CONTRASEÑA_LOGIN"]
   userValidation(type, username, password, res)
 })
 
@@ -100,8 +102,8 @@ function userValidation(type, username, password, res) {
     WHERE mail =  $1\
     AND password = $2', [username, password], (error, results) => {
       if (error) throw error
-      console.log(results)
-      res.status(200).json(results.rows)
+      console.log(results.rows)
+      res.send("201")
     })
   } else if (type == 1) {
     pool.query('SELECT * \
@@ -109,8 +111,8 @@ function userValidation(type, username, password, res) {
     WHERE mail =  $1\
     AND password = $2', [username, password], (error, results) => {
       if (error) throw error
-      console.log(results)
-      res.status(200).json(results.rows)
+      console.log(results.rows)
+      res.send("202")
     })
   }
 }
