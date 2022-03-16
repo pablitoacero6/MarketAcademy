@@ -33,7 +33,7 @@ function cambiarCod(){
 
 function cambiarInterfaz(code){
     if(code == 201){
-        let targetURL = '../initLogin/index.html';
+        let targetURL = '../student/initLogin/index.html';
         let newURL = document.createElement('a');
         newURL.href = targetURL;
         document.body.appendChild(newURL);
