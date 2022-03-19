@@ -150,10 +150,19 @@ body {
 }
 
 #general {
-    width: 80%;
+    width: 70%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: 30px auto;
 }
+
+#general input, select {
+    border: none;
+    width: 80%;
+    height: 50px;
+    font-size: 14px;
+}
+
+
 
 
