@@ -4,6 +4,7 @@ const app = express()
 const Pool = require('pg').Pool
 const fastcsv = require("fast-csv");
 const fs = require("fs");
+var FormData = require('form-data')
 const ws = fs.createWriteStream("public/data.csv");
 const axios = require('axios')
 var cors = require('cors')
@@ -12,7 +13,7 @@ var jsonParser = bodyParser.json()
 
 
 app.use(cors())
-app.use(express.json()); 
+app.use(express.json());
 
 const pool = new Pool({
   user: 'postgres',
@@ -23,22 +24,10 @@ const pool = new Pool({
 })
 
 app.get('/sendcsv', (req, res) => {
-  pool.query('SELECT * FROM student', (error, results) => {
-    if (error) throw error
+  pool.query('SELECT * FROM professor', (error, results) => {
+    if (error) throw console.log("Error QUERY")
     saveCsv(results.rows)
-    var formData = new FormData();
-    formData.append("public/data.csv", fileInputElement.files[0])
-    axios.post('http://localhost:3000/alg', {
-      idStudent: '000000',
-      nameStudent: 'David',
-      doc: formData
-    }).then(function (response) {
-        console.log(response.data)
-        res.send(response.data)
-      }).catch(function (error) {
-        console.log(error);
-        res.send(error)
-      })
+    algorithm("http://localhost:3001/alg", res)        
   })
 })
 
@@ -118,19 +107,28 @@ function userValidation(type, username, password, res) {
 }
 
 function saveCsv(data) {
-  const jsonData = JSON.parse(JSON.stringify(results.rows));
-  console.log("jsonData", jsonData);
+  const jsonData = JSON.parse(JSON.stringify(data));
   fastcsv
     .write(jsonData, { headers: false })
     .on("finish", function () {
-      console.log("Write to data.csv successfully!");
+      console.log("Data info saved!");
     })
     .pipe(ws);
 }
 
-app.get('/axios', (req, res) => {
-  res.send('Hola axios');
-})
+function algorithm(url, res) {
+  let formData = new FormData();
+  formData.append('csv', fs.createReadStream('public/data.csv'), (err) => {
+    if (err) console.log("Error FILE")
+  })
+  axios.post(url, formData, {
+    headers: formData.getHeaders()
+  }).then(function (response) {
+    res.send(response.data)
+  }).catch(function (error) {
+    res.send("Error AXIOS")
+  })
+}
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
