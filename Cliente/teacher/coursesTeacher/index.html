@@ -32,20 +32,43 @@
             </nav>
         </div>
         <div id="center">
-            <img src="../../img/user.png" alt="">
-            <input type="button" value="Cambiar foto" id="editPhoto">
-            <fieldset>
-                <legend>Editar datos personales</legend>
-                    <section id="datosPersonales">
-                        <ul>
-                            <li><p id="left">Nombre: </p><input type="text" name="text" id=""></li>
-                            <li><p id="left">Apellido: </p><input type="text" name="text" id=""></li>
-                            <li><p id="left">Telefono: </p><input type="text" name="text" id=""></li>
-                            <li><p id="left">Correo: </p><p id="right">*Correo profesor*</p></li>
-                        </ul>
+            <h1>Añadir cursos</h1>
+            <section id="general">
+                <p>Nombres: </p>
+                <input type="text" placeholder="Ejem: Daniel Bermudez">
+                <p>Precio (Sin signos de puntuacion) : </p>
+                <input type="text " placeholder="Ejem: 10000">
+                <p>Niveles: </p>
+                <select name="" id="">
+                    <option value="">Basico</option>
+                    <option value="">Intermedio</option>
+                    <option value="">Avanzado</option>
+                </select>
+                <p>Categorias: </p>
+                <select name="" id="">Biologia</select>
+                <p>Duracion total del curso (en sesiones) : </p>
+                <select name="" id="">
+                </select>
+                <p>Descripcion: </p>
+                <input type="text" placeholder="Este curso consiste en ..."> 
+                <fieldset>
+                    <p>Numero de palabras claves: </p>
+                    <input type="text" placeholder="Ejemp: 5">
+                    <section id="palabrasClave">
+                        <p>Palabra clave: </p>
+                        <input type="text" placeholder="Ejemp: Celula">
                     </section>
-                    <input type="button" value="Guardar" id="save">
-            </fieldset> 
+                    <input type="button" value="Guardar palabras clave">
+                </fieldset>
+           <section id="sesion">
+                <p>Sesiones a la semana</p>
+                <input type="text" placeholder="Ejem: 5">
+                <section id="numeroSesiones">
+
+                </section>
+           </section>
+              <input type="button" value="Guardar">
+        </section>
         </div>
     </div>
     <script src="./script.js"></script> 
