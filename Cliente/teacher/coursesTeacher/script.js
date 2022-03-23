@@ -35,7 +35,7 @@ sesionesSemanales.addEventListener("change",
     evt.preventDefault();
     limpiarSeccion();
     cambiarSesionesSemanalas();
-    crearSeccion();
+    crearSeccionSesionesSemanales();
 })
 
 function rellenarSelect(n, listAdd, list){
@@ -48,7 +48,7 @@ function rellenarSelect(n, listAdd, list){
     }
 }
 
-function crearSeccion(){
+function crearSeccionSesionesSemanales(){
 
     var seccion = document.createElement('section')
     for (let index = 0; index < numeroSesionesSemanales; index++) {
@@ -81,5 +81,63 @@ function crearSeccion(){
         seccion.appendChild(titulo)
         seccion.appendChild(division)
         document.getElementById('numeroSesiones').appendChild(seccion)
+    }
+}
+
+
+//palabras claves
+
+var bodyCount = document.getElementById('noPalabras')
+var numeroPalabrasClaves = 0
+
+for (let i = 0; i < 15; i++) {
+    var opcion = document.createElement('option')
+    var contenidoOpcion = document.createTextNode(i)
+
+    opcion.appendChild(contenidoOpcion)
+    bodyCount.appendChild(opcion)     
+}
+
+function cambiarCantidadPalabrasClaves() {
+    const indice = bodyCount.selectedIndex;
+    if(indice === -1) return; // Esto es cuando no hay elementos
+    const opcionSeleccionada = bodyCount.options[indice].text;
+    numeroPalabrasClaves = opcionSeleccionada
+  };
+
+function limpiarSeccionPalabrasClave(){
+    document.getElementById('sectionPalabrasClave').innerHTML = '';
+}
+
+bodyCount.addEventListener("change",
+(evt) => {
+    evt.preventDefault();
+    limpiarSeccionPalabrasClave();
+    cambiarCantidadPalabrasClaves();
+    crearSeccionPalabrasClaves();
+})
+
+function crearSeccionPalabrasClaves(){
+
+    var seccion = document.createElement('section')
+    for (let index = 0; index < numeroPalabrasClaves; index++) {
+        var titulo = document.createElement('h3')
+        var contenidoTitulo = document.createTextNode('Palabra clave No. ' + (index+1))
+        titulo.appendChild(contenidoTitulo)
+    
+        var division = document.createElement('div')
+
+        var dia = document.createElement('p')
+        var contenidoDia = document.createTextNode('Palabra: ')
+        dia.appendChild(contenidoDia)
+
+        var diasSemana = document.createElement('input')
+
+
+        division.appendChild(dia)
+        division.appendChild(diasSemana)
+        seccion.appendChild(titulo)
+        seccion.appendChild(division)
+        document.getElementById('sectionPalabrasClave').appendChild(seccion)
     }
 }
