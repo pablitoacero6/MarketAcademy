@@ -34,11 +34,11 @@
         <div id="center">
             <h1>Añadir cursos</h1>
             <section id="general">
-                <p>Nombres: </p>
-                <input type="text" placeholder="Ejem: Daniel Bermudez">
+                <p>Nombre curso: </p>
+                <input type="text" placeholder="Ejem: que son las celulas...">
                 <p>Precio (Sin signos de puntuacion) : </p>
                 <input type="text " placeholder="Ejem: 10000">
-                <p>Niveles: </p>
+                <p>Nivel: </p>
                 <select name="" id="">
                     <option value="">Basico</option>
                     <option value="">Intermedio</option>
@@ -47,28 +47,26 @@
                 <p>Categorias: </p>
                 <select name="" id="">Biologia</select>
                 <p>Duracion total del curso (en sesiones) : </p>
-                <select name="" id="">
+                <select name="" id="sesionesTotales">
                 </select>
                 <p>Descripcion: </p>
                 <input type="text" placeholder="Este curso consiste en ..."> 
-                <fieldset>
-                    <p>Numero de palabras claves: </p>
-                    <input type="text" placeholder="Ejemp: 5">
-                    <section id="palabrasClave">
-                        <p>Palabra clave: </p>
-                        <input type="text" placeholder="Ejemp: Celula">
-                    </section>
-                    <input type="button" value="Guardar palabras clave">
-                </fieldset>
-           <section id="sesion">
                 <p>Sesiones a la semana</p>
-                <input type="text" placeholder="Ejem: 5">
+                <select name="" id="sesionesSemanales">
+                </select>
+            </section>
                 <section id="numeroSesiones">
-
+                    
                 </section>
-           </section>
-              <input type="button" value="Guardar">
-        </section>
+                <div id="divPalabrasClaves">
+                    <p>Numero de palabras claves: </p>
+                    <select id="noPalabras"></select>                    
+                </div>   
+                <section id="sectionPalabrasClave">
+
+                </section>        
+       
+          <input type="button" id="btnGuardarCurso" value="Guardar">
         </div>
     </div>
     <script src="./script.js"></script> 
