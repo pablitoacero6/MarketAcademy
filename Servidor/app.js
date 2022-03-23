@@ -19,7 +19,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'market_academia_db',
-  password: 'david2021',
+  password: '0000',
   port: 5432,
 })
 
