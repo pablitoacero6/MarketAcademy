@@ -20,8 +20,8 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'market_academia_db',
-  password: '123',
-  //password: 'david2021',
+  //password: '123',
+  password: 'david2021',
   port: 5432,
 })
 
@@ -65,6 +65,14 @@ app.get('/tagged', (req, res) => {
   })
 })
 
+app.get('/categories', (req, res) => {
+  pool.query('SELECT * FROM category', (error, results) => {
+    if (error) throw error
+    console.log("GET categories")
+    res.status(200).json(results.rows)
+  })
+})
+
 app.post('/login', jsonParser, (req, res) => {
   const type = req.body["CODIGO_LOGIN"]
   const username = req.body["USUARIO_LOGIN"]
@@ -75,13 +83,16 @@ app.post('/login', jsonParser, (req, res) => {
 
 app.post('/recommended', jsonParser, (req, res) => {
   var url = "http://127.0.0.1:8000/alg/?user=" + req.body["userId"]
-  res.send(url)
-  /*pool.query('SELECT id_student as userId, id_course as cursoId, calification as rating \
-  FROM historical', (error, results) => {
+  pool.query('with students as ( \
+    select distinct id_student \
+    from historical \
+  )select ROW_NUMBER() OVER(ORDER BY id_student) as userid, id_student as db_id \
+  from students', (error, results) => {
     if (error) throw console.log("Error QUERY")
     saveCsv(results.rows)
-    algorithm(url, res)
-  })*/
+    //algorithm(url, res)
+    res.status(200).json(results.rows)
+  })
   console.log("POST recommended")
 })
 
@@ -154,6 +165,31 @@ app.post('/search', jsonParser, (req, res) => {
   console.log("POST search")
 })
 
+app.post('/coursesProfessor', jsonParser, (req, res) => {
+  var id = req.body["ID_PROFESSOR"]  
+  pool.query("SELECT * FROM course WHERE id_professor = $1", [id], (error, results) => {
+    if (error) throw error
+    res.status(200).json(results.rows)
+  })
+  console.log("POST coursesProfessor")
+})
+
+app.post('/endCourse', jsonParser, (req, res) => {
+  var id_student = req.body["ID_STUDENT"]
+  var id_course = req.body["ID_COURSE"]
+  var calification = req.body["CALIFICATION"]
+  pool.query("INSERT INTO historical(id_student, id_course, calification) \
+  values ($1, $2, $3)", [id_student, id_course, calification],(error, results) => {
+    if (error) throw error    
+  })  
+  pool.query("delete from register \
+  where id_student = $1 \
+  and id_course = $2", [id_student, id_course],(error, results) => {
+    if (error) throw error    
+  })
+  res.sendStatus(200)
+  console.log("POST endCourse")
+})
 
 function userValidation(type, username, password, res) {
   if (type == 0) {
