@@ -75,9 +75,9 @@ app.get('/categories', (req, res) => {
 
 app.post('/login', jsonParser, (req, res) => {
   const type = req.body["CODIGO_LOGIN"]
-  const username = req.body["USUARIO_LOGIN"]
+  const mail = req.body["USUARIO_LOGIN"]
   const password = req.body["CONTRASEÑA_LOGIN"]  
-  userValidation(type, username, password, res)
+  userValidation(type, mail, password, res)
   console.log("POST login")
 })
 
@@ -190,24 +190,36 @@ app.post('/endCourse', jsonParser, (req, res) => {
   console.log("POST endCourse")
 })
 
-function userValidation(type, username, password, res) {
+function userValidation(type, mail, password, res) {
   if (type == 0) {
     pool.query('SELECT * \
     FROM student \
-    WHERE mail =  $1\
-    AND password = $2', [username, password], (error, results) => {
+    WHERE mail =  $1', [mail], (error, results) => {
       if (error) throw error
-      console.log(results.rows)
-      res.send("201")
+      if (results.rows.length == 0) {
+        res.send("0")
+      }else{
+        if(results.rows[0]["password"] == password){
+          res.send("200")
+        }else{
+          res.send("1")
+        }
+      }      
     })
   } else if (type == 1) {
     pool.query('SELECT * \
     FROM professor \
-    WHERE mail =  $1\
-    AND password = $2', [username, password], (error, results) => {
+    WHERE mail =  $1', [mail], (error, results) => {
       if (error) throw error
-      console.log(results.rows)
-      res.send("202")
+      if (results.rows.length == 0) {
+        res.send("0")
+      }else{
+        if(results.rows[0]["password"] == password){
+          res.send("201")
+        }else{
+          res.send("1")
+        }
+      }
     })
   }
 }
