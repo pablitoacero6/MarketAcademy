@@ -285,7 +285,6 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding-bottom: 30px;
-    border-bottom: 1px solid black;
 }
 
 .boxCreate img {
