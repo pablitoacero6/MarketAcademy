@@ -1,5 +1,5 @@
 const express = require('express')
-const port = 3000
+const port = 4000
 const app = express()
 const Pool = require('pg').Pool
 const fastcsv = require("fast-csv");
@@ -20,7 +20,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'market_academia_db',
-  password: 'david2021',
+  password: '123',
   port: 5432,
 })
 
