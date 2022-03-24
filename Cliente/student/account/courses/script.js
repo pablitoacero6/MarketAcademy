@@ -8,10 +8,10 @@ var idCourseRegister = 0
 var btnEndCourse = ''
 var url = 'http://localhost:4000'
 
-fetch(url + "/recommended" , {
+fetch(url + "/coursesStudent" , {
     method: 'POST',
     body: JSON.stringify({
-        userId: localStorage.getItem('userInit')
+        ID_STUDENT: localStorage.getItem('userInit')
     }),
     headers: {
         'Accept': 'application/json',
