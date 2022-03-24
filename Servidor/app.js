@@ -75,23 +75,18 @@ app.get('/categories', (req, res) => {
 
 app.post('/login', jsonParser, (req, res) => {
   const type = req.body["CODIGO_LOGIN"]
-  const mail = req.body["USUARIO_LOGIN"]
-  const password = req.body["CONTRASEÑA_LOGIN"]  
-  userValidation(type, mail, password, res)
+  const id = req.body["USUARIO_LOGIN"]
+  const password = req.body["CONTRASEÑA_LOGIN"]
+  userValidation(type, id, password, res)
   console.log("POST login")
 })
 
 app.post('/recommended', jsonParser, (req, res) => {
   var url = "http://127.0.0.1:8000/alg/?user=" + req.body["userId"]
-  pool.query('with students as ( \
-    select distinct id_student \
-    from historical \
-  )select ROW_NUMBER() OVER(ORDER BY id_student) as userid, id_student as db_id \
-  from students', (error, results) => {
+  pool.query('select * from historical', (error, results) => {
     if (error) throw console.log("Error QUERY")
     saveCsv(results.rows)
-    //algorithm(url, res)
-    res.status(200).json(results.rows)
+    algorithm(url, res)
   })
   console.log("POST recommended")
 })
@@ -158,14 +153,14 @@ app.post('/search', jsonParser, (req, res) => {
   FROM course \
   WHERE title LIKE \'%${search}%\' \
   ORDER BY calification DESC`, (error, results) => {
-    if (error) throw error    
+    if (error) throw error
     res.status(200).json(results.rows)
   })
   console.log("POST search")
 })
 
 app.post('/coursesProfessor', jsonParser, (req, res) => {
-  var id = req.body["ID_PROFESSOR"]  
+  var id = req.body["ID_PROFESSOR"]
   pool.query("SELECT * FROM course WHERE id_professor = $1", [id], (error, results) => {
     if (error) throw error
     res.status(200).json(results.rows)
@@ -174,7 +169,7 @@ app.post('/coursesProfessor', jsonParser, (req, res) => {
 })
 
 app.post('/coursesStudent', jsonParser, (req, res) => {
-  var id = req.body["ID_STUDENT"]  
+  var id = req.body["ID_STUDENT"]
   pool.query("SELECT * FROM course, register \
   WHERE id_course = id  \
   and id_student = $1", [id], (error, results) => {
@@ -189,45 +184,45 @@ app.post('/endCourse', jsonParser, (req, res) => {
   var id_course = req.body["ID_COURSE"]
   var calification = req.body["CALIFICATION"]
   pool.query("INSERT INTO historical(id_student, id_course, calification) \
-  values ($1, $2, $3)", [id_student, id_course, calification],(error, results) => {
-    if (error) throw error    
-  })  
+  values ($1, $2, $3)", [id_student, id_course, calification], (error, results) => {
+    if (error) throw error
+  })
   pool.query("delete from register \
   where id_student = $1 \
-  and id_course = $2", [id_student, id_course],(error, results) => {
-    if (error) throw error    
+  and id_course = $2", [id_student, id_course], (error, results) => {
+    if (error) throw error
   })
   res.sendStatus(200)
   console.log("POST endCourse")
 })
 
-function userValidation(type, mail, password, res) {
+function userValidation(type, id, password, res) {
   if (type == 0) {
     pool.query('SELECT * \
     FROM student \
-    WHERE mail =  $1', [mail], (error, results) => {
+    WHERE mail =  $1', [id], (error, results) => {
       if (error) throw error
       if (results.rows.length == 0) {
         res.send("0")
-      }else{
-        if(results.rows[0]["password"] == password){
+      } else {
+        if (results.rows[0]["password"] == password) {
           res.send("200")
-        }else{
+        } else {
           res.send("1")
         }
-      }      
+      }
     })
   } else if (type == 1) {
     pool.query('SELECT * \
     FROM professor \
-    WHERE mail =  $1', [mail], (error, results) => {
+    WHERE id =  $1', [id], (error, results) => {
       if (error) throw error
       if (results.rows.length == 0) {
         res.send("0")
-      }else{
-        if(results.rows[0]["password"] == password){
+      } else {
+        if (results.rows[0]["password"] == password) {
           res.send("201")
-        }else{
+        } else {
           res.send("1")
         }
       }
@@ -248,7 +243,18 @@ function saveCsv(data) {
 function algorithm(url, res) {
   axios.get(url)
     .then(function (response) {
-      res.send(response.data)
+      var values = ""
+      for (var i = 0; i < response.data.cursos_id.length; i++) {
+        if (i == response.data.cursos_id.length - 1) {
+          values += " "+(response.data.cursos_id[i].id)
+        } else {
+          values += " "+(response.data.cursos_id[i].id + ",")
+        }
+      }
+      pool.query(`SELECT * FROM course WHERE id in (${values})`, (error, results) => {
+        if (error) throw error
+        res.status(200).json(results.rows)
+      })
     }).catch(function (error) {
       res.send(error)
     })
