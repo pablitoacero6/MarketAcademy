@@ -20,8 +20,8 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'market_academia_db',
-  //password: '123',
-  password: 'david2021',
+  password: '123',
+  //password: 'david2021',
   port: 5432,
 })
 
@@ -124,6 +124,7 @@ app.post('/createTeacher', jsonParser, (req, res) => {
 })
 
 app.post('/createCourse', jsonParser, (req, res) => {
+  console.log(req.body)
   var title = req.body["TITLE"]
   var price = req.body["PRICE"]
   var level = req.body["LEVEL"]

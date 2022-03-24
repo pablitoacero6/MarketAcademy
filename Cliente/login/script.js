@@ -106,3 +106,6 @@ function loginSinVerificacion(){
         newURL.click();
     }
 } */
+
+/* Funcion buscar */
+
