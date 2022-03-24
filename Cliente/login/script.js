@@ -32,13 +32,14 @@ function cambiarCod(){
 /* LOGIN VERFICADO */
 
 function cambiarInterfaz(code){
-    if(code == 201){
+    console.log(code)
+    if(code == 200){
         let targetURL = '../student/initLogin/index.html';
         let newURL = document.createElement('a');
         newURL.href = targetURL;
         document.body.appendChild(newURL);
         newURL.click();
-    }else if(code == 202){
+    }else if(code == 201){
         let targetURL = '../teacher/initTeacher/index.html';
         let newURL = document.createElement('a');
         newURL.href = targetURL;
@@ -52,6 +53,8 @@ function cambiarInterfaz(code){
         newURL.click();
     }
 }
+
+
 
 function login(){
     fetch(url + "/login", {
@@ -76,6 +79,7 @@ document.getElementById("initSession").addEventListener("click",
 (evt) => {
     evt.preventDefault();
     cambiarCod()
+    localStorage.setItem('userInit', document.getElementById('userInit').value)
     login();
 })
 
@@ -103,3 +107,6 @@ function loginSinVerificacion(){
         newURL.click();
     }
 } */
+
+/* Funcion buscar */
+
