@@ -141,3 +141,67 @@ function crearSeccionPalabrasClaves(){
         document.getElementById('sectionPalabrasClave').appendChild(seccion)
     }
 }
+
+//_---------------------------------------------------------------
+
+/* extraer nivel */
+var nivelCurso = ''
+var userInit = localStorage.getItem('userInit')
+
+function obtenerNivelCurso() {
+    const indice = document.getElementById('levelCourse').selectedIndex;
+    nivelCurso = document.getElementById('levelCourse').options[indice].text;
+  };
+
+document.getElementById('levelCourse').addEventListener("change",
+(evt) => {
+    evt.preventDefault();
+    obtenerNivelCurso();
+})
+
+/* extraer duracion */
+var duracionCurso = ''
+
+function obtenerDuracionCurso() {
+    const indice = document.getElementById('sesionesTotales').selectedIndex;
+    duracionCurso = document.getElementById('sesionesTotales').options[indice].text;
+  };
+
+document.getElementById('sesionesTotales').addEventListener("change",
+(evt) => {
+    evt.preventDefault();
+    obtenerDuracionCurso();
+})
+
+
+/* realizar registro curso */
+
+
+function matricular(){
+    fetch(url + "/register", {
+        method: 'POST',
+        body: JSON.stringify({
+            TITLE: document.getElementById('nameCourse').value,
+            PRICE: document.getElementById('priceCourse').value,
+            LEVEL: nivelCurso,
+            PROFESSOR: userInit,
+            CATEGORY: null,
+            IMG: null,
+            DURATION: duracionCurso,
+            DESCRIPTION: document.getElementById('descriptionCourse').value
+        }),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+    .catch(error => console.error('Error: ', error))
+    .then(response => {
+        return console.log('Success: ', response);
+    })
+}
+
+btnMtricula.addEventListener('click', (evt) => {
+    evt.preventDefault();
+   matricular();  
+})

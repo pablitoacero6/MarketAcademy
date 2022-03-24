@@ -6,7 +6,10 @@ var view = document.getElementsByClassName("view"),
     h1Box = document.getElementById('h1BoxCreate'),
     h3Box = document.getElementById('h3BoxCreate'),
     pBox = document.getElementById('pBoxCreate'),
-    url = 'http://localhost:4000';
+    btnMtricula = document.getElementById('btnRegister'),
+    url = 'http://localhost:4000',
+    idStudentRegister = localStorage.getItem('userInit'),
+    idCourseRegister = 0;
 
 
     /* PINTAR POPUP */
@@ -29,7 +32,8 @@ var view = document.getElementsByClassName("view"),
                         var count = Object.keys(json).length
                         for (let index = 0; index < count; index++) {
                             if(elementTwo.innerHTML == json[index].title){
-                                
+                                idCourseRegister = json[index].id
+
                                 var title = document.createElement('h1')
                                 title.setAttribute('id', 'h1BoxCreate')
                                 var textTitle  = document.createTextNode(json[index].title)
@@ -46,14 +50,13 @@ var view = document.getElementsByClassName("view"),
                                     ".Costo: "+ json[index].price + " Calificacion: " + json[index].calification)
                                 par.appendChild(textPar)
 
-                                var btn = document.createElement('button')
                                 var textBtn = document.createTextNode('Adquirir')
-                                btn.appendChild(textBtn)
+                                btnMtricula.appendChild(textBtn)
 
                                 body.appendChild(title)
                                 body.appendChild(subtitle)
                                 body.appendChild(par)
-                                body.appendChild(btn)
+                                body.appendChild(btnMtricula)
                             }
                         }
                     })
@@ -98,9 +101,10 @@ fetch(url + "/courses").then(function(res) {
 
         var img = document.createElement('img')
             if(json[index].img == null){
-                img.setAttribute('src','../../img/ejemplo1.png')
+                img.setAttribute('src','../../img/img1.png')
             }else{
-                img.setAttribute('src', "'" + json[index].img + "'")
+                console.log(json[index].img)
+                img.setAttribute('src',json[index].img)
             }
         
         var subtitle = document.createElement('h3')
@@ -121,7 +125,33 @@ fetch(url + "/courses").then(function(res) {
 
     activateClick();
 })
-    
+
+
+/* crear matricula */
+
+function matricular(){
+    fetch(url + "/register", {
+        method: 'POST',
+        body: JSON.stringify({
+            ID_STUDENT: idStudentRegister,
+            ID_COURSE: idCourseRegister
+        }),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+    .catch(error => console.error('Error: ', error))
+    .then(response => {
+        return console.log('Success: ', response);
+    })
+}
+
+btnMtricula.addEventListener('click', (evt) => {
+    evt.preventDefault();
+   matricular();  
+})
+
 
     
 

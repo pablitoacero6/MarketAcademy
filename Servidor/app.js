@@ -130,6 +130,7 @@ app.post('/createCourse', jsonParser, (req, res) => {
 })
 
 app.post('/register', jsonParser, (req, res) => {
+  console.log(req.body)
   var id_student = req.body["ID_STUDENT"]
   var id_course = req.body["ID_COURSE"]
   var status = "matriculado"
