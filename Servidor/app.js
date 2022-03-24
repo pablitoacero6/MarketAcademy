@@ -27,55 +27,50 @@ const pool = new Pool({
 
 app.get('/students', (req, res) => {
   pool.query('SELECT * FROM student', (error, results) => {
-    if (error) {
-      throw error
-    }
+    if (error) throw error
+    console.log("GET students")
     res.status(200).json(results.rows)
   })
 })
 
 app.get('/professors', (req, res) => {
   pool.query('SELECT * FROM professor', (error, results) => {
-    if (error) {
-      throw error
-    }
+    if (error) throw error
+    console.log("GET professors")
     res.status(200).json(results.rows)
   })
 })
 
 app.get('/courses', (req, res) => {
   pool.query('SELECT * FROM course', (error, results) => {
-    if (error) {
-      throw error
-    }
+    if (error) throw error
+    console.log("GET courses")
     res.status(200).json(results.rows)
   })
 })
 
 app.get('/tags', (req, res) => {
   pool.query('SELECT * FROM tag', (error, results) => {
-    if (error) {
-      throw error
-    }
+    if (error) throw error
+    console.log("GET tags")
     res.status(200).json(results.rows)
   })
 })
 
 app.get('/tagged', (req, res) => {
   pool.query('SELECT * FROM tagged', (error, results) => {
-    if (error) {
-      throw error
-    }
+    if (error) throw error
+    console.log("GET tagged")
     res.status(200).json(results.rows)
   })
 })
 
 app.post('/login', jsonParser, (req, res) => {
-  console.log(req.body)
   const type = req.body["CODIGO_LOGIN"]
   const username = req.body["USUARIO_LOGIN"]
-  const password = req.body["CONTRASEÑA_LOGIN"]
+  const password = req.body["CONTRASEÑA_LOGIN"]  
   userValidation(type, username, password, res)
+  console.log("POST login")
 })
 
 app.post('/recommended', jsonParser, (req, res) => {
@@ -87,6 +82,7 @@ app.post('/recommended', jsonParser, (req, res) => {
     saveCsv(results.rows)
     algorithm(url, res)
   })*/
+  console.log("POST recommended")
 })
 
 app.post('/createStudent', jsonParser, (req, res) => {
@@ -96,11 +92,10 @@ app.post('/createStudent', jsonParser, (req, res) => {
   var password = req.body["PASSWORD_STUDENT"]
   pool.query("insert into student \
   values ($1, $2, $3, $4)", [id, name, mail, password], (error, results) => {
-    if (error) {
-      throw error
-    }
+    if (error) throw error
     res.status(200).json(results.rows)
   })
+  console.log("POST crStudent")
 })
 
 app.post('/createTeacher', jsonParser, (req, res) => {
@@ -111,11 +106,10 @@ app.post('/createTeacher', jsonParser, (req, res) => {
   var account = req.body["ACCOUNT_NUMBER"]
   pool.query("insert into professor(id, name, mail, password, account_number) \
   values ($1, $2, $3, $4, $5)", [id, name, mail, password, account], (error, results) => {
-    if (error) {
-      throw error
-    }
+    if (error) throw error
     res.status(200).json(results.rows)
   })
+  console.log("POST crProfessor")
 })
 
 app.post('/createCourse', jsonParser, (req, res) => {
@@ -129,11 +123,10 @@ app.post('/createCourse', jsonParser, (req, res) => {
   var description = req.body["DESCRIPTION"]
   pool.query("insert into course(title, price, id_level, id_professor, id_category, img, duration, description) \
   values ($1, $2, $3, $4, $5, $6, $7, $8)", [title, price, level, professor, category, img, duration, description], (error, results) => {
-    if (error) {
-      throw error
-    }
+    if (error) throw error
     res.status(200).json(results.rows)
   })
+  console.log("POST crCourse")
 })
 
 app.post('/register', jsonParser, (req, res) => {
@@ -142,17 +135,24 @@ app.post('/register', jsonParser, (req, res) => {
   var status = "matriculado"
   pool.query("insert into register \
   values($1, $2, $3)", [id_student, id_course, status], (error, results) => {
-    if (error) {
-      throw error
-    }
+    if (error) throw error
     res.status(200).json(results.rows)
   })
+  console.log("POST crRegister")
 })
 
-app.get('/lista', (req, res) => {
-  var data = [{ "id": 1053175832, "name": "Jose Chaves", "mail": "jose.chaves@gmail.com", "password": "josechaves" }, { "id": 1052620306, "name": "Valentina Barrera", "mail": "valentina.barrera@gmail.com", "password": "valentinabarrera" }, { "id": 1053675814, "name": "Andres Chaves", "mail": "andres.chaves@gmail.com", "password": "andreschaves" }, { "id": 1054807890, "name": "Monica Hernandez", "mail": "monica.hernandez@gmail.com", "password": "monicahernandez" }, { "id": 1052545474, "name": "Juan Blanco", "mail": "juan.blanco@gmail.com", "password": "juanblanco" }, { "id": 1054726635, "name": "Paulo Caceres", "mail": "paulo.caceres@gmail.com", "password": "paulocaceres" }, { "id": 1054939393, "name": "Julian Nontiel", "mail": "julian.nontiel@gmail.com", "password": "juliannontiel" }, { "id": 1053650884, "name": "Jhon Nausan", "mail": "jhon.nausan@gmail.com", "password": "jhonnausan" }, { "id": 1052349868, "name": "Maria Morales", "mail": "maria.morales@gmail.com", "password": "mariamorales" }, { "id": 1054908112, "name": "Macarena Leal", "mail": "macarena.leal@gmail.com", "password": "macarenaleal" }, { "id": 1053787377, "name": "Edwin Cardona", "mail": "edwin.cardona@gmail.com", "password": "edwincardona" }, { "id": 1, "name": "Carro", "mail": "carrocorreo", "password": "validacion" }, { "id": 23213213, "name": "sdasda", "mail": "dsadsad", "password": "validacion" }]
-  res.send(data)
+app.post('/search', jsonParser, (req, res) => {
+  var search = req.body["SEARCH"]
+  pool.query(`SELECT * \
+  FROM course \
+  WHERE title LIKE \'%${search}%\' \
+  ORDER BY calification DESC`, (error, results) => {
+    if (error) throw error    
+    res.status(200).json(results.rows)
+  })
+  console.log("POST search")
 })
+
 
 function userValidation(type, username, password, res) {
   if (type == 0) {
