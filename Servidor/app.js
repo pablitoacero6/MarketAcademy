@@ -81,6 +81,7 @@ app.post('/login', jsonParser, (req, res) => {
   console.log("POST login")
 })
 
+
 app.post('/recommended', jsonParser, (req, res) => {
   var url = "http://127.0.0.1:8000/alg/?user=" + req.body["userId"]
   pool.query('select * from historical', (error, results) => {
@@ -182,6 +183,7 @@ app.post('/coursesStudent', jsonParser, (req, res) => {
 })
 
 app.post('/endCourse', jsonParser, (req, res) => {
+  console.log(req.body)
   var id_student = req.body["ID_STUDENT"]
   var id_course = req.body["ID_COURSE"]
   var calification = req.body["CALIFICATION"]
@@ -198,11 +200,12 @@ app.post('/endCourse', jsonParser, (req, res) => {
   console.log("POST endCourse")
 })
 
+//cambie la consulta para poder entrar con id
 function userValidation(type, id, password, res) {
   if (type == 0) {
     pool.query('SELECT * \
     FROM student \
-    WHERE mail =  $1', [id], (error, results) => {
+    WHERE id =  $1', [id], (error, results) => {
       if (error) throw error
       if (results.rows.length == 0) {
         res.send("0")
