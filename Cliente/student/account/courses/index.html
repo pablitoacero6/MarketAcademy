@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="data">
+        <div id="header">
+            <img src="../../../img/logo.png" alt="LOGO" id="logo">
+            <a href="../../initLogin/index.html"><img src="../../../img/close.png" alt="LOGO" id="imgClose"></a>
+        </div>
+        <div id="menu">
+            <nav>
+                <ul>
+                    <a href="../personalData/index.html"><li><p>Datos personales</p><img src="../../../img/datos.png" alt=""></li></a>
+                    <a href="../history/index.html"><li><p>Historico</p><img src="../../../img/calendario.png" alt=""></li></a>
+                    <a href="../management/index.html"><li><p>Administrar cuenta</p> <img src="../../../img/editarDatos.png" alt=""></li></a>
+                    <a href="../courses/index.html"><li  id="select"><p>Mis cursos</p><img src="../../../img/cursos.png" alt=""></li></a>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div id="container">
+        <div id="title">
+        </div>
+        <div id="center">
+            
+        </div>
+    </div>
+    <div class="overlay" id="overlay1">
+        <div class="popup" id="popup1">
+            <a href="#" class="cerrarPopup" id="cerrarPopup1" ><img src="../../../img/close.png" alt=""></a>
+            <h2 id="titleCourse"></h2>
+            <div class="boxCreate">
+                <img alt="" id="imgBoxCreate">
+                <div id="popUpCurso">  
+                    <h1 id="h1BoxCreate"></h1>
+                    <h3 id="h3BoxCreate"></h3>
+                    <input type="text" placeholder="Ingrese calificación del 1 al 5" id="inputBoxCreate">
+                    <p id="pBoxCreate"></p>
+                    <button id="btnRegister"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

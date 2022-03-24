@@ -88,7 +88,16 @@ var view = document.getElementsByClassName("view"),
     /* PONER CURSOS EN EL INICIO */
 
 
-fetch(url + "/courses").then(function(res) {
+fetch(url + "/recommended" , {
+    method: 'POST',
+    body: JSON.stringify({
+        userId: localStorage.getItem('userInit')
+    }),
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+}).then(function(res) {
     return res.json();
 }).then(function (json) {
     const body = document.getElementById('center');
