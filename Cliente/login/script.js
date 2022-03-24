@@ -53,6 +53,8 @@ function cambiarInterfaz(code){
     }
 }
 
+
+
 function login(){
     fetch(url + "/login", {
         method: 'POST',
@@ -76,6 +78,7 @@ document.getElementById("initSession").addEventListener("click",
 (evt) => {
     evt.preventDefault();
     cambiarCod()
+    localStorage.setItem('userInit', document.getElementById('userInit').value)
     login();
 })
 
