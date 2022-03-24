@@ -7,7 +7,7 @@ insert into historical values (1054726635, 1, '2020-11-27', '2020-12-10', 4);
 
 insert into historical values (1053787377, 2, '2020-11-27', '2020-12-10', 5);
 insert into historical values (1052620306, 2, '2020-11-27', '2020-12-10', 3);
-insert into historical values (1053175832, 2, '2020-11-27', '2020-12-10', 3.5)
+insert into historical values (1053175832, 2, '2020-11-27', '2020-12-10', 3.5);
 insert into historical values (1054807890, 2, '2020-11-27', '2020-12-10', 4);
 insert into historical values (1052545474, 2, '2020-11-27', '2020-12-10', 2);
 insert into historical values (1054726635, 2, '2020-11-27', '2020-12-10', 5);
