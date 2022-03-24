@@ -56,10 +56,10 @@ var registerStudent = document.getElementById("registerStudent"),
         fetch(url + "/createStudent", {
             method: 'POST',
             body: JSON.stringify({
-                ID_STUDENT: document.getElementById('noDocumento'),
-                NAME_STUDENT: document.getElementById('nombresRegistro'),
-                MAIL_STUDENT: document.getElementById('correoRegistro'),
-                PASSWORD_STUDENT: document.getElementById('contraseñaRegistro')
+                ID_STUDENT: document.getElementById('noDocumento').value,
+                NAME_STUDENT: document.getElementById('nombresRegistro').value,
+                MAIL_STUDENT: document.getElementById('correoRegistro').value,
+                PASSWORD_STUDENT: document.getElementById('contraseñaRegistro').value
             }),
             headers: {
                 'Accept': 'application/json',
@@ -78,10 +78,11 @@ var registerStudent = document.getElementById("registerStudent"),
         fetch(url + "/createTeacher", {
             method: 'POST',
             body: JSON.stringify({
-                ID_TEACHER: document.getElementById('noDocumento'),
-                NAME_TEACHER: document.getElementById('nombresRegistro'),
-                MAIL_TEACHER: document.getElementById('correoRegistro'),
-                PASSWORD_TEACHER: document.getElementById('contraseñaRegistro')
+                ID_TEACHER: document.getElementById('noDocumento').value,
+                NAME_TEACHER: document.getElementById('nombresRegistro').value,
+                MAIL_TEACHER: document.getElementById('correoRegistro').value,
+                PASSWORD_TEACHER: document.getElementById('contraseñaRegistro').value,
+                ACCOUNT_NUMBER: document.getElementById('numeroCuenta').value
             }),
             headers: {
                 'Accept': 'application/json',
