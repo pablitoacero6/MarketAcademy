@@ -152,7 +152,9 @@ btnMtricula.addEventListener('click', (evt) => {
    matricular();  
 })
 
-
-    
-
+document.getElementById('linkSearch').addEventListener('click', (evt) => {
+    evt.preventDefault();
+    localStorage.setItem('wordSearch',document.getElementById('searchInput').value)
+    location.href="../search/index.html"
+})
     
