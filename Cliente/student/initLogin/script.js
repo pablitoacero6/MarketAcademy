@@ -27,6 +27,7 @@ var view = document.getElementsByClassName("view"),
         view[index].addEventListener('click', function() {
             overlay1.classList.add('active');
             popup1.classList.add('active');
+            console.log(h1Box.value)
             printElem(view[index]); 
         });  
     }
