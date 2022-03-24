@@ -1,7 +1,7 @@
 const loginButton = document.getElementById('initSession')
 var tipoUsuarioLogin = ''
 var var_cod_login = 0
-const url = 'http://localhost:3000'
+const url = 'http://localhost:4000'
 
 /* OBTENER TIPO USUARIO */
 
