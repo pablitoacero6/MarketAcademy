@@ -234,7 +234,7 @@ body {
     padding: 20px;
     text-align: center;
     width: 40%;
-    height: 70%;
+    height: 50%;
     overflow-y: scroll;
     transition: .3s ease all;
     transform: scale(0.7);
