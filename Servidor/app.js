@@ -86,10 +86,10 @@ app.post('/login', jsonParser, (req, res) => {
 })
 
 app.post('/createStudent', jsonParser, (req, res) =>{  
-  var id = req.body[0]["ID_STUDENT"]
-  var name = req.body[0]["NAME_STUDENT"]
-  var mail = req.body[0]["MAIL_STUDENT"]
-  var password = req.body[0]["PASSWORD_STUDENT"]  
+  var id = req.body["ID_STUDENT"]
+  var name = req.body["NAME_STUDENT"]
+  var mail = req.body["MAIL_STUDENT"]
+  var password = req.body["PASSWORD_STUDENT"]  
   pool.query("insert into student \
   values ($1, $2, $3, $4)",[id, name, mail, password] ,(error, results) => {
     if (error) {
@@ -100,11 +100,11 @@ app.post('/createStudent', jsonParser, (req, res) =>{
 })
 
 app.post('/createTeacher', jsonParser, (req, res) =>{  
-  var id = req.body[0]["ID_TEACHER"]
-  var name = req.body[0]["NAME_TEACHER"]
-  var mail = req.body[0]["MAIL_TEACHER"]
-  var password = req.body[0]["PASSWORD_TEACHER"]  
-  var account = req.body[0]["ACCOUNT_NUMBER"]
+  var id = req.body["ID_TEACHER"]
+  var name = req.body["NAME_TEACHER"]
+  var mail = req.body["MAIL_TEACHER"]
+  var password = req.body["PASSWORD_TEACHER"]  
+  var account = req.body["ACCOUNT_NUMBER"]
   pool.query("insert into professor(id, name, mail, password, account_number) \
   values ($1, $2, $3, $4, $5)",[id, name, mail, password, account] ,(error, results) => {
     if (error) {
