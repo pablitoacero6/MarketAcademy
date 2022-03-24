@@ -4,8 +4,9 @@ const app = express()
 const Pool = require('pg').Pool
 const fastcsv = require("fast-csv");
 const fs = require("fs");
+const concat = require("concat-stream")
 var FormData = require('form-data')
-const ws = fs.createWriteStream("public/data.csv");
+const ws = fs.createWriteStream("public/data.cvs");
 const axios = require('axios')
 var cors = require('cors')
 var bodyParser = require('body-parser')
@@ -26,8 +27,10 @@ const pool = new Pool({
 app.get('/sendcsv', (req, res) => {
   pool.query('SELECT * FROM professor', (error, results) => {
     if (error) throw console.log("Error QUERY")
-    saveCsv(results.rows)
-    algorithm("http://localhost:3001/alg", res)        
+    //saveCsv(results.rows)
+    //algorithm("http://localhost:3001/alg", res)
+    //algorithm("http://127.0.0.1:8000/alg/?user=8", res)
+    algorithm("http://127.0.0.1:8000/try", res)
   })
 })
 
@@ -109,7 +112,7 @@ function userValidation(type, username, password, res) {
 function saveCsv(data) {
   const jsonData = JSON.parse(JSON.stringify(data));
   fastcsv
-    .write(jsonData, { headers: false })
+    .write(jsonData, { headers: true })
     .on("finish", function () {
       console.log("Data info saved!");
     })
@@ -117,17 +120,21 @@ function saveCsv(data) {
 }
 
 function algorithm(url, res) {
+  const config = { headers: { 'Content-Type': 'multipart/form-data' } }
   let formData = new FormData();
-  formData.append('csv', fs.createReadStream('public/data.csv'), (err) => {
+  formData.append('csv_rating', fs.createReadStream('public/data.cvs'), (err) => {
     if (err) console.log("Error FILE")
   })
-  axios.post(url, formData, {
-    headers: formData.getHeaders()
-  }).then(function (response) {
-    res.send(response.data)
-  }).catch(function (error) {
-    res.send("Error AXIOS")
-  })
+  formData.pipe(concat(data => {
+    axios.post(url, JSON.stringify(data), {
+      headers: formData.getHeaders()
+    })
+      .then(function (response) {
+        res.send(response.data)
+      }).catch(function (error) {
+        res.send(error)
+      })
+  }))
 }
 
 app.listen(port, () => {
