@@ -5,7 +5,8 @@ var view = document.getElementsByClassName("view"),
     cerrarPopup1 = document.getElementById("cerrarPopup1"),
     h1Box = document.getElementById('h1BoxCreate'),
     h3Box = document.getElementById('h3BoxCreate'),
-    pBox = document.getElementById('pBoxCreate');
+    pBox = document.getElementById('pBoxCreate'),
+    url = 'http://localhost:4000';
 
 
     /* PINTAR POPUP */
@@ -17,23 +18,111 @@ var view = document.getElementsByClassName("view"),
             try { 
                 if(elementTwo.hasAttribute('src') == true){
                     imgPop.setAttribute('src',elementTwo.getAttribute('src'))
+                }                
+                
+                if(elementTwo.hasAttribute('class') == true){
+                    fetch(url + "/courses").then(function(res) {
+                        return res.json();
+                    }).then(function (json) {
+                        const body = document.getElementById('popUpCurso');
+                        body.innerHTML = ''
+                        var count = Object.keys(json).length
+                        for (let index = 0; index < count; index++) {
+                            if(elementTwo.innerHTML == json[index].title){
+                                
+                                var title = document.createElement('h1')
+                                title.setAttribute('id', 'h1BoxCreate')
+                                var textTitle  = document.createTextNode(json[index].title)
+                                title.appendChild(textTitle)
+
+                                var subtitle = document.createElement('h3')
+                                subtitle.setAttribute('id', 'h3BoxCreate')
+                                var textSubtitle  = document.createTextNode("Profesor: " + json[index].id_professor)
+                                subtitle.appendChild(textSubtitle)
+
+                                var par = document.createElement('p')
+                                par.setAttribute('id','pBoxCreate')
+                                var textPar  = document.createTextNode(json[index].description + 
+                                    ".Costo: "+ json[index].price + " Calificacion: " + json[index].calification)
+                                par.appendChild(textPar)
+
+                                var btn = document.createElement('button')
+                                var textBtn = document.createTextNode('Adquirir')
+                                btn.appendChild(textBtn)
+
+                                body.appendChild(title)
+                                body.appendChild(subtitle)
+                                body.appendChild(par)
+                                body.appendChild(btn)
+                            }
+                        }
+                    })
                 }
             } catch (error) {  
             }
         }
     }
 
-    for (let index = 0; index < view.length; index++) {        
-        view[index].addEventListener('click', function() {
-            overlay1.classList.add('active');
-            popup1.classList.add('active');
-            console.log(h1Box.value)
-            printElem(view[index]); 
-        });  
+    function activateClick(){
+        for (let index = 0; index < view.length; index++) {        
+            view[index].addEventListener('click', function() {
+                overlay1.classList.add('active');
+                popup1.classList.add('active');
+                console.log(h1Box.value)
+                printElem(view[index]); 
+            });  
+        }
+
+        cerrarPopup1.addEventListener('click', function() {
+            overlay1.classList.remove('active');
+            popup1.classList.remove('active');
+        });
+    }   
+
+
+    
+
+    /* PONER CURSOS EN EL INICIO */
+
+
+fetch(url + "/courses").then(function(res) {
+    return res.json();
+}).then(function (json) {
+    const body = document.getElementById('center');
+    var count = Object.keys(json).length
+    for (let index = 0; index < count; index++) {
+        var div = document.createElement('div')
+        var link = document.createElement('a')
+        link.setAttribute('class', 'view')
+        link.setAttribute('href','#')
+
+        var img = document.createElement('img')
+            if(json[index].img == null){
+                img.setAttribute('src','../../img/ejemplo1.png')
+            }else{
+                img.setAttribute('src', "'" + json[index].img + "'")
+            }
+        
+        var subtitle = document.createElement('h3')
+        subtitle.setAttribute('class', '')
+        var textSubtitle  = document.createTextNode(json[index].title)
+        subtitle.appendChild(textSubtitle)
+
+        var par = document.createElement('p')
+        var textPar  = document.createTextNode(json[index].description)
+        par.appendChild(textPar)
+
+        link.appendChild(img)
+        link.appendChild(subtitle)
+        link.appendChild(par)
+        div.appendChild(link);
+        body.appendChild(div);
     }
 
+    activateClick();
+})
+    
 
-    cerrarPopup1.addEventListener('click', function() {
-        overlay1.classList.remove('active');
-        popup1.classList.remove('active');
-    });
+    
+
+    

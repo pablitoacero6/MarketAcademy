@@ -20,8 +20,8 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'market_academia_db',
-  //password: '123',
-  password: 'david2021',
+  password: '123',
+  //password: 'david2021',
   port: 5432,
 })
 
