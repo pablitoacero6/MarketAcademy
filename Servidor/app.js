@@ -173,6 +173,17 @@ app.post('/coursesProfessor', jsonParser, (req, res) => {
   console.log("POST coursesProfessor")
 })
 
+app.post('/coursesStudent', jsonParser, (req, res) => {
+  var id = req.body["ID_STUDENT"]  
+  pool.query("SELECT * FROM course, register \
+  WHERE id_course = id  \
+  and id_student = $1", [id], (error, results) => {
+    if (error) throw error
+    res.status(200).json(results.rows)
+  })
+  console.log("POST coursesStudent")
+})
+
 app.post('/endCourse', jsonParser, (req, res) => {
   var id_student = req.body["ID_STUDENT"]
   var id_course = req.body["ID_COURSE"]
