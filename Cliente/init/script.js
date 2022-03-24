@@ -1,7 +1,8 @@
 var registerStudent = document.getElementById("registerStudent"),
     overlay1 =document.getElementById("overlay1"),
     popup1 = document.getElementById("popup1"),
-    cerrarPopup1 = document.getElementById("cerrarPopup1");
+    cerrarPopup1 = document.getElementById("cerrarPopup1"),
+    url = 'http://localhost:4000';
 
     /* POPUP */
 
@@ -22,9 +23,9 @@ var registerStudent = document.getElementById("registerStudent"),
     var seleccionUsuario = 0 
 
     function seleccion() {
-        const indice = document.getElementById('selectionOption').selectedIndex;
+        const indice = document.getElementById('selectOption').selectedIndex;
         if(indice === -1) return; // Esto es cuando no hay elementos
-        const opcionSeleccionada = document.getElementById('selectionOption').options[indice].text;
+        const opcionSeleccionada = document.getElementById('selectOption').options[indice].text;
         if(opcionSeleccionada == 'Estudiante'){
             seleccionUsuario = 0
         }else if(opcionSeleccionada == 'Profesor'){
@@ -32,7 +33,7 @@ var registerStudent = document.getElementById("registerStudent"),
         }
       };
     
-    document.getElementById('selectionOption').addEventListener("change",
+    document.getElementById('selectOption').addEventListener("change",
     (evt) => {
         evt.preventDefault();
         seleccion();
