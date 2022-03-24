@@ -6,7 +6,7 @@ const fastcsv = require("fast-csv");
 const fs = require("fs");
 const concat = require("concat-stream")
 var FormData = require('form-data')
-const ws = fs.createWriteStream("public/data.cvs");
+const ws = fs.createWriteStream("public/rating.cvs");
 const axios = require('axios')
 var cors = require('cors')
 var bodyParser = require('body-parser')
@@ -25,11 +25,12 @@ const pool = new Pool({
   port: 5432,
 })
 
-app.get('/sendcsv', (req, res) => {
-  pool.query('SELECT * FROM professor', (error, results) => {
+app.get('/recommended', (req, res) => {
+  pool.query('SELECT id_student as userId, id_course as cursoId, calification as rating \
+  FROM historical', (error, results) => {
     if (error) throw console.log("Error QUERY")
     saveCsv(results.rows)
-    //algorithm("http://127.0.0.1:8000/try", res)
+    algorithm("http://127.0.0.1:8000/alg/?user=1053175832", res)
   })
 })
 
@@ -152,22 +153,13 @@ function saveCsv(data) {
     .pipe(ws);
 }
 
-function algorithm(url, res) {
-  const config = { headers: { 'Content-Type': 'multipart/form-data' } }
-  let formData = new FormData();
-  formData.append('csv_rating', fs.createReadStream('public/data.cvs'), (err) => {
-    if (err) console.log("Error FILE")
-  })
-  formData.pipe(concat(data => {
-    axios.post(url, JSON.stringify(data), {
-      headers: formData.getHeaders()
-    })
+function algorithm(url, res) {  
+    axios.get(url) 
       .then(function (response) {
         res.send(response.data)
       }).catch(function (error) {
         res.send(error)
-      })
-  }))
+      })  
 }
 
 app.listen(port, () => {
