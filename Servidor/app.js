@@ -20,8 +20,8 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'market_academia_db',
-  password: '123',
-  //password: 'david2021',
+  //password: '123',
+  password: 'david2021',
   port: 5432,
 })
 
@@ -198,6 +198,18 @@ app.post('/endCourse', jsonParser, (req, res) => {
   })
   res.sendStatus(200)
   console.log("POST endCourse")
+})
+
+app.post('/historicalStudent', jsonParser, (req, res) => {
+  var id = req.body["ID_STUDENT"]
+  pool.query("select * \
+  from course, historical \
+  where id_course = id \
+  and id_student = $1", [id], (error, results) => {
+    if (error) throw error
+    res.status(200).json(results.rows)
+  })
+  console.log("POST historicalStudent")
 })
 
 //cambie la consulta para poder entrar con id
