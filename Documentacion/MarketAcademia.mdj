@@ -2605,7 +2605,8 @@
 							},
 							"name": "date_init",
 							"type": "DATE",
-							"length": 0
+							"length": 0,
+							"nullable": true
 						},
 						{
 							"_type": "ERDColumn",
@@ -2615,7 +2616,8 @@
 							},
 							"name": "date_end",
 							"type": "DATE",
-							"length": 0
+							"length": 0,
+							"nullable": true
 						},
 						{
 							"_type": "ERDColumn",

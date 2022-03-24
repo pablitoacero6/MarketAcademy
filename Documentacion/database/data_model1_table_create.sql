@@ -59,9 +59,9 @@ CREATE TABLE public.category (
 CREATE TABLE public.historical (
     id_student numeric NOT NULL,
     id_course integer NOT NULL,
-    date_init date NOT NULL,
-    date_end date NOT NULL,
-    calification double precision NOT NULL,
+    date_init date,
+    date_end date,
+    calification double precision,
     PRIMARY KEY (id_student, id_course)
 );
 
