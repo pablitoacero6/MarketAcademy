@@ -20,7 +20,8 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'market_academia_db',
-  password: '123',
+  //password: '123',
+  password: 'david2021',
   port: 5432,
 })
 
@@ -112,6 +113,11 @@ app.post('/createTeacher', jsonParser, (req, res) =>{
     }
     res.status(200).json(results.rows)
   })
+})
+
+app.get('/lista', (req, res) => {
+  var data = [{"id":1053175832,"name":"Jose Chaves","mail":"jose.chaves@gmail.com","password":"josechaves"},{"id":1052620306,"name":"Valentina Barrera","mail":"valentina.barrera@gmail.com","password":"valentinabarrera"},{"id":1053675814,"name":"Andres Chaves","mail":"andres.chaves@gmail.com","password":"andreschaves"},{"id":1054807890,"name":"Monica Hernandez","mail":"monica.hernandez@gmail.com","password":"monicahernandez"},{"id":1052545474,"name":"Juan Blanco","mail":"juan.blanco@gmail.com","password":"juanblanco"},{"id":1054726635,"name":"Paulo Caceres","mail":"paulo.caceres@gmail.com","password":"paulocaceres"},{"id":1054939393,"name":"Julian Nontiel","mail":"julian.nontiel@gmail.com","password":"juliannontiel"},{"id":1053650884,"name":"Jhon Nausan","mail":"jhon.nausan@gmail.com","password":"jhonnausan"},{"id":1052349868,"name":"Maria Morales","mail":"maria.morales@gmail.com","password":"mariamorales"},{"id":1054908112,"name":"Macarena Leal","mail":"macarena.leal@gmail.com","password":"macarenaleal"},{"id":1053787377,"name":"Edwin Cardona","mail":"edwin.cardona@gmail.com","password":"edwincardona"},{"id":1,"name":"Carro","mail":"carrocorreo","password":"validacion"},{"id":23213213,"name":"sdasda","mail":"dsadsad","password":"validacion"}]
+  res.send(data)
 })
 
 function userValidation(type, username, password, res) {
