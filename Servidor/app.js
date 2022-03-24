@@ -20,8 +20,8 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'market_academia_db',
-  password: '123',
-  //password: 'david2021',
+  //password: '123',
+  password: 'david2021',
   port: 5432,
 })
 
@@ -61,6 +61,14 @@ app.get('/tagged', (req, res) => {
   pool.query('SELECT * FROM tagged', (error, results) => {
     if (error) throw error
     console.log("GET tagged")
+    res.status(200).json(results.rows)
+  })
+})
+
+app.get('/categories', (req, res) => {
+  pool.query('SELECT * FROM category', (error, results) => {
+    if (error) throw error
+    console.log("GET categories")
     res.status(200).json(results.rows)
   })
 })
@@ -154,6 +162,15 @@ app.post('/search', jsonParser, (req, res) => {
     res.status(200).json(results.rows)
   })
   console.log("POST search")
+})
+
+app.post('/coursesProfessor', jsonParser, (req, res) => {
+  var id = req.body["ID_PROFESSOR"]  
+  pool.query("SELECT * FROM course WHERE id_professor = $1", [id], (error, results) => {
+    if (error) throw error
+    res.status(200).json(results.rows)
+  })
+  console.log("POST coursesProfessor")
 })
 
 app.post('/endCourse', jsonParser, (req, res) => {
