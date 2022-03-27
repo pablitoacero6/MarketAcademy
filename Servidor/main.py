@@ -51,7 +51,7 @@ def get_iris(user: int):
     # Veamos los 20 recomendados con mayor puntaje en la predic para este usuario
     data = {}
     data['cursos_id'] = []
-    for i, aRepo in enumerate(user0[-20:]):
+    for i, aRepo in enumerate(user0[-10:]):
             aux = str(aRepo+1)
             data['cursos_id'].append({
                 'id':aux})  

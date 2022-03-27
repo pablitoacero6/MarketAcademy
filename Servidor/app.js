@@ -6,7 +6,7 @@ const fastcsv = require("fast-csv");
 const fs = require("fs");
 const concat = require("concat-stream")
 var FormData = require('form-data')
-const ws = fs.createWriteStream("public/rating.cvs");
+const ws = fs.createWriteStream("public/data.csv");
 const axios = require('axios')
 var cors = require('cors')
 var bodyParser = require('body-parser')
@@ -84,7 +84,8 @@ app.post('/login', jsonParser, (req, res) => {
 
 app.post('/recommended', jsonParser, (req, res) => {
   var url = "http://127.0.0.1:8000/alg/?user=" + req.body["userId"]
-  pool.query('select * from historical', (error, results) => {
+  pool.query('select id_student as userid, id_course as cursoid, calification as rating \
+  from historical', (error, results) => {
     if (error) throw console.log("Error QUERY")
     saveCsv(results.rows)
     algorithm(url, res)
@@ -267,7 +268,7 @@ function algorithm(url, res) {
           values += " "+(response.data.cursos_id[i].id + ",")
         }
       }
-      pool.query(`SELECT * FROM course WHERE id in (${values})`, (error, results) => {
+      pool.query(`SELECT * FROM course WHERE id in (${values}) order by calification desc`, (error, results) => {
         if (error) throw error
         res.status(200).json(results.rows)
       })
