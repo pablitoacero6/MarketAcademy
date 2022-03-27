@@ -29,3 +29,30 @@ insert into historical values (1052620306, 5, '2021-01-11', '2021-01-30', 5);
 insert into historical values (1054807890, 5, '2021-01-11', '2021-01-30', 5);
 insert into historical values (1052545474, 5, '2021-01-11', '2021-01-30', 5);
 insert into historical values (1054726635, 5, '2021-01-11', '2021-01-30', 4);
+
+insert into historical values (1053175832, 6, '2021-01-11', '2021-01-30', 4);
+insert into historical values (1052620306, 7, '2021-01-11', '2021-01-30', 3);
+insert into historical values (1053675814, 8, '2021-01-11', '2021-01-30', 2);
+insert into historical values (1054807890, 9, '2021-01-11', '2021-01-30', 3);
+insert into historical values (1052545474, 10, '2021-01-11', '2021-01-30', 4);
+							   
+insert into historical values (1054726635, 11, '2021-01-11', '2021-01-30', 3);
+insert into historical values (1054939393, 12, '2021-01-11', '2021-01-30', 2);
+insert into historical values (1053650884, 13, '2021-01-11', '2021-01-30', 3);
+insert into historical values (1052349868, 14, '2021-01-11', '2021-01-30', 4);
+insert into historical values (1054908112, 15, '2021-01-11', '2021-01-30', 3);
+							   
+insert into historical values (1053787377, 6, '2021-01-11', '2021-01-30', 2);
+insert into historical values (1053175832, 7, '2021-01-11', '2021-01-30', 3);
+insert into historical values (1052620306, 8, '2021-01-11', '2021-01-30', 4);
+insert into historical values (1053675814, 9, '2021-01-11', '2021-01-30', 3);
+insert into historical values (1054807890, 10, '2021-01-11', '2021-01-30', 2);
+							   
+insert into historical values (1052545474, 11, '2021-01-11', '2021-01-30', 3);
+insert into historical values (1054726635, 12, '2021-01-11', '2021-01-30', 4);
+insert into historical values (1054939393, 13, '2021-01-11', '2021-01-30', 3);
+insert into historical values (1053650884, 14, '2021-01-11', '2021-01-30', 2);
+insert into historical values (1052349868, 15, '2021-01-11', '2021-01-30', 3);
+							   
+insert into historical values (1054908112, 6, '2021-01-11', '2021-01-30', 4);
+insert into historical values (1053787377, 7, '2021-01-11', '2021-01-30', 3);

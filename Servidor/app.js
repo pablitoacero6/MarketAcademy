@@ -212,7 +212,6 @@ app.post('/historicalStudent', jsonParser, (req, res) => {
   console.log("POST historicalStudent")
 })
 
-//cambie la consulta para poder entrar con id
 function userValidation(type, id, password, res) {
   if (type == 0) {
     pool.query('SELECT * \
