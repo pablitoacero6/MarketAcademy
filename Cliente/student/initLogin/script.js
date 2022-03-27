@@ -109,6 +109,7 @@ fetch(url + "/recommended" , {
         link.setAttribute('href','#')
 
         var img = document.createElement('img')
+        console.log(json[index].img)
             if(json[index].img == null){
                 img.setAttribute('src','../../img/img1.png')
             }else{
